@@ -12,8 +12,15 @@ define([], function() {
             }
         }, function( Input ) {
             if (
-                JSON.stringify(Object.keys( Input.Object )) != 
-                JSON.stringify([ "Headers", "Name", "Dependencies", "Exports", "Content" ])
+                JSON.stringify( 
+                    _.difference([
+                      "Headers", 
+                      "Name", 
+                      "Dependencies", 
+                      "Exports", 
+                      "Content" 
+                    ],  Object.keys( Input.Object ))) !=
+                  JSON.stringify([])
             ) {
                 throw { message: "Error: The context was not a valid module." };
             } else {
