@@ -1,14 +1,23 @@
 //Module_parse_NoDefine_ThrowsErrorNoDefine.js: Testing logic.
 
 define([
-	"Module_parse"
+	"parse"
 ], function(
-	Module_parse
+	parse
 ) {
 	return {
 		"Name":"Module_parse_NoDefine_ThrowsErrorNoDefine",
-		"Input": "",
-		"Function": Module_parse,
-		"ExpectedOutput": ""
+		"Input": {
+			"Options": "This is not a define statement.",
+			"Object": {}
+		},
+		"Function": function( Input ) {
+			return parse.call( Input.Object, Input.Options );
+		},
+		"ExceptionTest": true,
+		"ExpectedOutput": {
+			message: "Error: Module does not contain a valid define statement."
+		},
+		"Debug": false
 	};
 });

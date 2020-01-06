@@ -1,4 +1,4 @@
-//Module_parse_hasHeader_ReturnsStateWithHeader.js: Testing logic.
+//Module_parse_hasExports_ReturnsStateWithExports.js: Testing logic.
 
 define([
 	"parse"
@@ -6,9 +6,9 @@ define([
 	parse
 ) {
 	return {
-		"Name":"Module_parse_hasHeader_ReturnsStateWithHeader",
+		"Name":"Module_parse_hasExports_ReturnsStateWithExports",
 		"Input": {
-			"Options": "//This is a header.\ndefine(function() {});", 
+			"Options": "define([ 'dep' ], function( dep ) {});",
 			"Object": {
 				"Headers": undefined,
 				"Name": undefined,
@@ -21,11 +21,11 @@ define([
 			return parse.call( Input.Object, Input.Options );
 		},
 		"ExpectedOutput": {
-			"Headers": "//This is a header.\n",
+			"Headers": '',
 			"Name": undefined,
-			"Dependencies": undefined,
-			"Exports": undefined,
-			"Content": "function() {}"
+			"Dependencies": [ "dep" ],
+			"Exports": [ "dep" ],
+			"Content": "function( dep ) {}"
 		},
 		"Comparator": {
 			"Object": true
