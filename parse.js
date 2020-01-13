@@ -19,7 +19,7 @@ define([
 
 	var match = new RegExp(/^([\s\S]*)define\((.*)\);\s*$/i).exec( Input );
 	
-	Module.Headers = match[1];
+	Module.Header = match[1];
 
 	var parts = new RegExp(/^\s*('.+'|".+")?,?\s*(\[[\s\S]*\])?,?\s*(function\([\s\S]*\)\s*{[\s\S]*}|{[\s\S]*})\s*$/i)
 	.exec( match[2] )

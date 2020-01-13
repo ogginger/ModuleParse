@@ -11,10 +11,11 @@ define([], function() {
                 return true;
             }
         }, function( Input ) {
+            console.log( Input.Object );
             if (
                 JSON.stringify( 
                     _.difference([
-                      "Headers", 
+                      "Header", 
                       "Name", 
                       "Dependencies", 
                       "Exports", 

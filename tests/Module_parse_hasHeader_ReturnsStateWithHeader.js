@@ -10,7 +10,7 @@ define([
 		"Input": {
 			"Options": "//This is a header.\ndefine(function() {});", 
 			"Object": {
-				"Headers": undefined,
+				"Header": undefined,
 				"Name": undefined,
 				"Dependencies": undefined,
 				"Exports": undefined,
@@ -21,7 +21,7 @@ define([
 			return parse.call( Input.Object, Input.Options );
 		},
 		"ExpectedOutput": {
-			"Headers": "//This is a header.\n",
+			"Header": "//This is a header.\n",
 			"Name": undefined,
 			"Dependencies": undefined,
 			"Exports": undefined,

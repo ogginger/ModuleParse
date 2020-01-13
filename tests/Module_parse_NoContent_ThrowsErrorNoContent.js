@@ -10,7 +10,7 @@ define([
 		"Input": {
 			"Options": "define();",
 			"Object": {
-				"Headers": undefined,
+				"Header": undefined,
 				"Dependencies": undefined,
 				"Exports": undefined,
 				"Content": undefined
