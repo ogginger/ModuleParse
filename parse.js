@@ -9,6 +9,7 @@ define([
 ) {
   return function( Input ) {
 	var Module = this;
+
 	validate({
 		"Validation": parseValidation,
 		"Data": {
@@ -17,11 +18,11 @@ define([
 		}
 	});	
 
-	var match = new RegExp(/^([\s\S]*)define\((.*)\);\s*$/i).exec( Input );
+	var match = new RegExp(/^([\s\S]*)define\(([\s\S]*)\);\s*$/i).exec( Input );
 	
 	Module.Header = match[1];
 
-	var parts = new RegExp(/^\s*('.+'|".+")?,?\s*(\[[\s\S]*\])?,?\s*(function\([\s\S]*\)\s*{[\s\S]*}|{[\s\S]*})\s*$/i)
+	var parts = new RegExp(/^\s*('[a-zA-Z0-9_$]+'|"[a-zA-Z0-9_$]+")?,?\s*(\[["',a-zA-Z0-9_$\s]*\])?,?\s*([\s\S]+)\s*$/i)
 	.exec( match[2] )
 	.splice(1)
 	.filter(function( part ) {
@@ -43,10 +44,9 @@ define([
 		//if the first part starts and ends with square brackets then...
 			//The first part of the define statement is the dependencies.
 			Module.Dependencies = JSON.parse(parts[0].replace( /'|"/g, '"' ));
-			
-			if (parts[1].match(/^function\(([\s\S]+)\)\s*{[\s\S]*}$/i)) {
-			//if the content contains a function with exports then...                                                                                                                                                             a function with exports then...
-				Module.Exports = new RegExp(/^function\(([\s\S]+)\)\s*{[\s\S]*}$/i)
+			if (parts[1].match(/^function\(([a-zA-Z0-9_$\s]+)\)\s*{[\s\S]*}$/i)) {
+			//if the content contains a function with exports then...  
+				Module.Exports = new RegExp(/^function\(([a-zA-Z0-9_$\s,]+)\)\s*[\s\S]+$/i)
 				.exec( parts[1] )[1]
 				.split(",")
 				.map(function( _export ) {
