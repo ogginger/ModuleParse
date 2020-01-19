@@ -18,12 +18,14 @@ define([
 		}
 	});	
 
-	var match = new RegExp(/^([\s\S]*)define\(([\s\S]*)\);\s*$/i).exec( Input );
+	var match = new RegExp(/^([\s\S]*)(define|requirejs)\(([\s\S]*)\);\s*$/i).exec( Input );
 	
 	Module.Header = match[1];
 
+	Module.Type = match[2];
+
 	var parts = new RegExp(/^\s*('[a-zA-Z0-9_$]+'|"[a-zA-Z0-9_$]+")?,?\s*(\[["',a-zA-Z0-9_$\s]*\])?,?\s*([\s\S]+)\s*$/i)
-	.exec( match[2] )
+	.exec( match[3] )
 	.splice(1)
 	.filter(function( part ) {
 		return Boolean( part );
