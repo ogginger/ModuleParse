@@ -3,9 +3,9 @@ define([], function() {
         function( Input ) {
             if ( typeof Input.Options != "string" ) {
                 throw {  message: "Error: The input type was not string." };
-            } else if ( Input.Options.match(/^[\s\S]*define\([\s\S]*\);\s*$/i) == null ) {
+            } else if ( Input.Options.match(/^[\s\S]*(define|requirejs)\([\s\S]*\);\s*$/i) == null ) {
                 throw { message: "Error: Module does not contain a valid define statement." }
-            } else if (Input.Options.match(/^[\s\S]*define\([\s\S*]*({[\s\S]*}|function\s*\([\s\S]*\)\s*{[\s\S]*})\s*\);\s*$/gi) == null ) {
+            } else if (Input.Options.match(/^[\s\S]*(define|requirejs)\([\s\S*]*({[\s\S]*}|function\s*\([\s\S]*\)\s*{[\s\S]*})\s*\);\s*$/gi) == null ) {
                 throw { message: "Error: The define statement has no content." }
             } else {
                 return true;
