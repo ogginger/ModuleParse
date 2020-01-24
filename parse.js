@@ -46,7 +46,7 @@ define([
 		//if the first part starts and ends with square brackets then...
 			//The first part of the define statement is the dependencies.
 			Module.Dependencies = JSON.parse(parts[0].replace( /'|"/g, '"' ));
-			if (parts[1].match(/^function\(([a-zA-Z0-9_$\s]+)\)\s*{[\s\S]*}$/i)) {
+			if (parts[1].match(/^function\(([a-zA-Z0-9_$\s,]+)\)\s*{[\s\S]*}$/i)) {
 			//if the content contains a function with exports then...  
 				Module.Exports = new RegExp(/^function\(([a-zA-Z0-9_$\s,]+)\)\s*[\s\S]+$/i)
 				.exec( parts[1] )[1]
@@ -76,7 +76,6 @@ define([
 	} else {
 		throw { message: "Error: Invalid number of define arguments." };
 	}
-	
 	return Module;
   };
 });
